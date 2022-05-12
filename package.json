@@ -17,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/gokublue007/Employee-Management-System/issues"
   },
-  "homepage": "https://github.com/gokublue007/Employee-Management-System#readme"
+  "homepage": "https://github.com/gokublue007/Employee-Management-System#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.2.4",
+    "mysql": "^2.18.1"
+  }
 }
