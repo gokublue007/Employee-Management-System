@@ -188,3 +188,52 @@ async function viewEmpDept() {
         });
     })
 }
+
+//All the updates
+
+function updateRole() {
+    inquirer.prompt([
+        {
+            message: "Enter the first name of the employee  you  would like to update? ",
+            type: "input",
+            name: "name"
+        }, {
+            message: "Enter the new role ID:",
+            type: "number",
+            name: "role_id"
+        }
+    ]).then(function (response) {
+        console.log("Role has been updated! Run the view department function or refresh your sql code to check the updated list of roleswith your addition")
+        connection.query("UPDATE employee SET role_id = ? WHERE first_name = ?", [response.role_id, response.name], function (err, data) {
+            console.table(data);
+            
+    
+        })
+        begin();
+    })
+
+}
+
+
+function updateManager() {
+    inquirer.prompt([
+        {
+            message: "Enter the first name of the employee for who you would like to  make the update? ",
+            type: "input",
+            name: "name"
+        }, {
+            message: "Enter the id of the new Manager:",
+            type: "number",
+            name: "manager_id"
+        }
+    ]).then(function (response) {
+        connection.query("UPDATE employee SET manager_id = ? WHERE first_name = ?", [response.manager_id, response.name], function (err, data) {
+            console.log("\nNew Manager has been updated for the employee! Run the view the employee's  by their manager function or refresh your sql code to check the updated list with your addition"); 
+            console.table(data);
+    
+        })
+        begin();
+    })
+
+}
+
