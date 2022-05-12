@@ -22,3 +22,26 @@ VALUES ('President', 700000, 1),
 ('Accountant', 67000, 2),
 ('Secretary', 55000, 5);
 
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES  ('Elias','Vasquez',1, 1),
+        ('Walter', 'Vasquez', 2, 1),
+        ('Reynaldo', 'Vasquez', 3, 1), 
+        ('Noe', 'Orellana', 4, 1), 
+        ('Lando','Orellana', 4, 1),
+        ('Johanna', 'Vasquez', 4, 1), 
+        ('Tiger', 'Woods', 5, 3 ),
+        ('2', 'Pac', 6, 1),
+        ('Snoop', 'Dogg', 7, 2),
+        ('Biggie', 'Smalls', 8, 4),
+        ('Mac', 'Miller', 9, 3), 
+        ('K9', 'Unit', 9, 3),
+        ('Kevin', 'Hart', 9, 3),
+        ('Will', 'Smith', 10, 8 ), 
+        ('Bad', 'Bunny', 10, 8),
+
+
+SELECT employee.first_name, employee.last_name, emprole.title,emprole.salary, department.dept_name, employee_m.first_name AS Manager_fame, employee_m.last_name AS Manager_lname
+FROM employee JOIN emprole ON employee.role_id = emprole.id JOIN department ON emprole.department_id = department.id LEFT JOIN employee AS employee_m ON employee.manager_id = employee_m.id;
+SELECT * FROM department;
+SELECT * FROM emprole;
+SELECT * FROM employee;
