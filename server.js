@@ -283,3 +283,15 @@ async function deleteDept() {
     );
 } 
 
+// View buget of departments
+const viewTotalBuget = ()=> {
+    connection.query("SELECT emprole.department_id AS id,department.dept_name AS department, SUM(salary) AS Budget FROM emprole INNER JOIN department ON emprole.department_id = department.id GROUP BY  emprole.department_id", (err, res) => {
+            if (err) throw err;
+            console.table(res);
+            begin();
+        
+        }
+    );
+}
+
+begin();
