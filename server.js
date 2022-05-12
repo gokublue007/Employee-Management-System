@@ -253,3 +253,33 @@ async function deleteRole() {
     );
 } 
 
+async function deleteEmp() {
+    const roleDetails = await inquirer.prompt(questions.removeEmployee)
+    connection.query("DELETE FROM employee WHERE ?", {
+            id: roleDetails.roleid
+            
+        },
+        function (err) {
+            if (err) throw err;
+            console.log("Employee has been deleted from your team!");
+            console.table(roleDetails);
+            begin();
+        }
+    );
+} 
+
+async function deleteDept() {
+    const roleDetails = await inquirer.prompt(questions.removeDept)
+    connection.query("DELETE FROM department WHERE ?", {
+            dept_name: roleDetails.deptRemoval
+            
+        },
+        function (err) {
+            if (err) throw err;
+            console.log("Department has been deleted from your team!");
+            console.table(roleDetails);
+            begin();
+        }
+    );
+} 
+
