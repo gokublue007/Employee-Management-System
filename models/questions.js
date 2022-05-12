@@ -21,4 +21,28 @@ module.exports = {
             "Delete a department",
             "Total budget of a department",
             "Quit",
-      ],
+    ],
+        newEmp: (emproles, employees) => [
+        {
+            type: "input",
+            message: "Enter the employee's first name?",
+            name: "first_name",
+        },
+        {
+            type: "input",
+            message: "Enter the employee's last name?",
+            name: "last_name",
+        },
+        {
+            type: "list",
+            message: "Enter the employee's role?",
+            name: "role_id",
+            choices: emproles, // look for it again for updating the manager
+        },
+        {
+            type: "list",
+            message: "Enter the employee's manager?", // questions popping up again
+            name: "manager_id",
+            choices: employees,
+        },
+    ],
