@@ -46,3 +46,47 @@ module.exports = {
             choices: employees,
         },
     ],
+    deptQuestions: {
+        //add Department Questions for the user
+        type: "input",
+        message: "Enter the name of your department?",
+        name: "depart_name",
+    },
+        newRole: [
+        {
+          //add Role for the user
+            type: "input",
+            message: "Enter the title of your new role?",
+            name: "title_r", //title Role for the user
+        },
+        {
+            type: "input",
+            message: "Enter the salary for this role?",
+            name: "salary_r",
+        },
+        {
+            type: "input",
+            message: "Enter the department id for this role?",
+            name: "id_r", // dept_id, //departmentIDrole changed as not working
+        },
+    ],
+    removeRole: {
+        type: "list",
+        message: "Enter the employee's role that you want to delete",
+        name: "roleRemoval",
+        choices: [
+            "President",
+            "CEO",
+            "CFO",
+            "Vice President",
+            "Director of IT",
+            "Director of R&D",
+            "Director of Marketing",
+            "Programming Manager",
+            "R&D Researcher",
+            "Marketing Consultant",
+            "Computer Programmer",
+            "Sales Associate",
+            "Secretary",
+        ],
+    },
