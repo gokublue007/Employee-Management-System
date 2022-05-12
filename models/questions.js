@@ -46,6 +46,7 @@ module.exports = {
             choices: employees,
         },
     ],
+
     deptQuestions: {
         //add Department Questions for the user
         type: "input",
@@ -111,4 +112,11 @@ module.exports = {
             "14",
             "15",
         ],
-      },
+    }
+        removeDept: {
+        type: "list",
+        message: "Enter the department name you want to delete?",
+        name: "deptRemoval",
+        choices: ["IT", "FINANCE", "R&D", "MANAGEMENT", "MARKETING"],
+        },
+    };
