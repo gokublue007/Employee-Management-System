@@ -119,3 +119,72 @@ async function addRole() {
         }
     );
 } 
+
+//view departments, employees,,roles, view employee by - only roles, only managers and only departments
+
+viewDept = () =>{
+    connection.query("SELECT * FROM department", (err, res)=> {
+        if (err) throw err;
+        console.table(res);
+        begin()
+    });
+}
+
+viewEmp = () => {
+    connection.query("SELECT employee.first_name, employee.last_name, emprole.title, emprole.salary, department.dept_name AS department FROM employee LEFT JOIN emprole ON employee.role_id = emprole.id LEFT JOIN department ON emprole.department_id = department.id", function (err, res) {
+        if (err) throw err;   
+        console.table(res);
+        begin()
+    });
+}
+
+allRoles = () =>{
+    connection.query("SELECT title FROM emprole", (err, res) =>{
+        if (err) throw err;
+        console.table(res);
+        begin()
+    });
+}
+
+async function viewEmpManager () {
+    connection.query("SELECT * FROM employee", async (err, employee) => {
+        const {
+            managerid
+        } = await inquirer.prompt([{
+            type: "list",
+            message: "Choose a manager:",
+            name: "managerid",
+            choices: () => {
+                return employee.map((manager) => manager.manager_id);
+            },
+        }, ]);
+        connection.query(`SELECT first_name, last_name FROM employee WHERE manager_id=${managerid}`, function (err, res) {
+            if (err) throw err;
+
+            console.table(res);
+            begin();
+        });
+    })
+}
+
+
+async function viewEmpDept() {
+    connection.query("SELECT * FROM department", async (err, department) => {
+        const {
+            departmentName
+        } = await inquirer.prompt([{
+            type: "list",
+            message: "Select a Department:",
+            name: "departmentName",
+            choices: () => {
+                return department.map((department) => department.dept_name);
+            }
+        }]);
+        connection.query("SELECT employee.first_name, employee.last_name, emprole.title, emprole.salary, department.dept_name AS department FROM employee LEFT JOIN emprole ON employee.role_id = emprole.id LEFT JOIN department ON emprole.department_id = department.id", function (err, res) {
+            if (err) throw err;
+            console.log("You can now view your employees by their department!");
+            console.table(res.filter((name) => departmentName === name.department));
+            begin();
+        });
+    })
+}
