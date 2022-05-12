@@ -234,6 +234,22 @@ function updateManager() {
         })
         begin();
     })
-
 }
+
+// Deleting functions
+
+async function deleteRole() {
+    const roleDetails = await inquirer.prompt(questions.removeRole)
+    connection.query("DELETE FROM emprole WHERE ?", {
+            title: roleDetails.roleRemoval
+            
+        },
+        function (err) {
+            if (err) throw err;
+            console.log("Role has been deleted from your team!");
+            console.table(roleDetails);
+            begin()
+        }
+    );
+} 
 
