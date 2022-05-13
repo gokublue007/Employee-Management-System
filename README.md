@@ -20,7 +20,7 @@
 
 ![Project Image](./assets/img/12-sql-homework-video-thumbnail.png)
 
-- [Video Demonstration](https://drive.google.com/file/d/1JFSWZslLQllwRN6xtjI12rrazgJo1zDn/view?usp=sharing)
+- [Video Demonstration](https://drive.google.com/file/d/1r2o1B59d7uUXKNJPEI51rqrRPR38F6v3/view?usp=sharing)
 
 
 ---
