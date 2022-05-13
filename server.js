@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-const questions = require('./models/questions')
+const questions = require('./helpers/questions')
 const table = require("console.table");
 const mysql = require('mysql');
 
@@ -123,15 +123,15 @@ async function addRole() {
 //view departments, employees,,roles, view employee by - only roles, only managers and only departments
 
 viewDept = () =>{
-    connection.query("SELECT * FROM department", (err, res)=> {
+    connection.query("SELECT * FROM department ", (err, res)=> {
         if (err) throw err;
         console.table(res);
         begin()
     });
 }
 
-viewEmp = () => {
-    connection.query("SELECT employee.first_name, employee.last_name, emprole.title, emprole.salary, department.dept_name AS department FROM employee LEFT JOIN emprole ON employee.role_id = emprole.id LEFT JOIN department ON emprole.department_id = department.id", function (err, res) {
+viewEmp=() => {
+    connection.query("SELECT employee.first_name, employee.last_name, emprole.title, emprole.salary, department.dept_name, employee_m.first_name AS Manager_fame, employee_m.last_name AS Manager_name FROM employee JOIN emprole ON employee.role_id = emprole.id JOIN department ON emprole.department_id = department.id LEFT JOIN employee AS employee_m ON employee.manager_id = employee_m.id", function (err, res) {
         if (err) throw err;   
         console.table(res);
         begin()
